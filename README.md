@@ -12,3 +12,5 @@ Je n'ai pas encore d'idée
 - [Cosmos](https://www.cosmos.so/)
 - [Pinterest](https://ch.pinterest.com/)
 - [Adobe Fonts](fonts.adobe.com)
+
+_Repo cloné et ouvert dans VS Code._
