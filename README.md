@@ -8,3 +8,7 @@ Je suis en 2ème année FPA en option design et économie.
 Je n'ai pas encore d'idée
 ## Comment me trouver
 - GitHub : lajuulliie
+## Mes 3 sites préférés
+- [Cosmos](https://www.cosmos.so/)
+- [Pinterest](https://ch.pinterest.com/)
+- [Adobe Fonts](fonts.adobe.com)
