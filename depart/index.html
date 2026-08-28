@@ -21,15 +21,9 @@
       font-size: 1.15rem;
       padding: 0.75rem 1.25rem;
       border: 2px solid #1a1a1a;
-      border-radius: 8px;
       background: #d9d0c3;
       color: #1a1a1a;
       cursor: pointer;
-      transition: transform 0.15s ease;
-    }
-
-    #magic:hover {
-      transform: scale(1.03);
     }
   </style>
 
@@ -54,7 +48,13 @@
   <main>
     <h1>Jeu du prompt</h1>
     <p>Ce bouton est gris. Votre job : le faire changer de couleur <strong>au clic</strong>, en demandant à une IA. Vous ne codez pas à la main.</p>
-    <button type="button" id="magic" onclick="this.style.background = '#0f4c5c'; this.style.color = 'white';">Cliquez-moi</button>
+    <button type="button" id="magic">Cliquez-moi</button>
   </main>
+  <script>
+  document.getElementById("magic").addEventListener("click", function () {
+    this.style.backgroundColor = "#e36414";
+    this.style.color = "white";
+  });
+</script>
 </body>
 </html>
