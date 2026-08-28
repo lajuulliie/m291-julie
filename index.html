@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Julie — Page de présentation</title>
+<style>
+  /* Deux polices : une pour les titres, une pour le texte */
+
+  :root {
+    --fond: #FAF8F5;
+    --encre: #000000;
+    --accent: #000000;
+    --carte: #FFFFFF;
+    --bordure: #E3DDD5;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--fond);
+    color: var(--encre);
+    font-family: helvetica, sans-serif;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  main {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .initiale {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background-color: var(--accent);
+    color: var(--carte);
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    font-family: helvetica, sans-serif;
+    font-size: 2.2rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .phrase {
+    font-size: 1.05rem;
+    color: var(--encre);
+    opacity: 0.85;
+    margin: 0;
+  }
+
+  section {
+    background-color: var(--carte);
+    border: 1px solid var(--bordure);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-family: helvetica, sans-serif;
+    font-size: 1.2rem;
+    margin-top: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  li {
+    background-color: var(--fond);
+    border: 1px solid var(--bordure);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+  }
+
+  .lien-github {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--carte);
+    background-color: var(--accent);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+
+  .lien-github:hover,
+  .lien-github:focus {
+    opacity: 0.9;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-top: 2rem;
+  }
+
+  /* Adaptation pour petits écrans */
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<main>
+  <header>
+    <h1>Julie</h1>
+    <p class="phrase">J'aime la musique.</p>
+  </header>
+
+  <section>
+    <h2>Mes compétences et envies</h2>
+    <ul>
+      <li>Design</li>
+      <li>Photo</li>
+      <li>Vidéo</li>
+    </ul>
+  </section>
+
+  <section style="text-align: center;">
+    <a class="lien-github" href="https://github.com/lajuulliie" target="_blank" rel="noopener noreferrer">
+      Voir mon profil GitHub
+    </a>
+  </section>
+
+  <section>
+      <section>
+    <h2>Culture</h2>
+    <ul>
+      <li>Je regarde : ARCANE</li>
+      <li>Je regarde : THE MENTALIST</li>
+      <li>Mon dernier livre : Par les routes de Sylvain Prudhomme</li>
+    </ul>
+  </section>
+  </section>
+
+  <footer>
+    <p>Page réalisée dans le cadre de ma formation de médiamaticienne CFC.</p>
+  </footer>
+</main>
+
+</body>
+</html>
