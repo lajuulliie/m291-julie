@@ -13,4 +13,6 @@ Je n'ai pas encore d'idée
 - [Pinterest](https://ch.pinterest.com/)
 - [Adobe Fonts](fonts.adobe.com)
 
+## Page profil : https://lajuulliie.github.io/m291-julie/
+
 _Repo cloné et ouvert dans VS Code._
