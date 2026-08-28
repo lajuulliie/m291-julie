@@ -14,7 +14,7 @@ Règle : quota épuisé → je change d’outil. Je ne paie jamais.
 ## Mon ordre si ça sature
 1. Chat GPT
 2. Claude
-3. 
+3. Gemini
 ## Ce que je refuse
 - mettre une carte bancaire
 - « essai 14 jours puis 20 $ »
