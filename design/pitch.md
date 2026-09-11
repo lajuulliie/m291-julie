@@ -1,4 +1,4 @@
-## Pitch
+## Pitch - App de lecture
 
 Nom de l'app : Prochaine Lecture
 
