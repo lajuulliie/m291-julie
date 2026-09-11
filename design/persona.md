@@ -1,5 +1,4 @@
-## Persona - appli bibliothèque
-
+## Persona - App de lecture
 Prénom et âge : Sylvie, 19 ans
 
 Occupation : Étudiante en gymnase 
