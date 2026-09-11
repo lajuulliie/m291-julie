@@ -9,4 +9,4 @@
 
 ## La pire, pour la présentation
 
-La pire, selon le tableau c'est le 01 mur de texte et le 04 carnaval.
+La pire, selon le tableau, c'est le 01 mur de texte et le 04 carnaval.
