@@ -1,6 +1,6 @@
 ## Pitch - App de lecture
 
-Nom de l'app : Prochaine Lecture
+Nom de l'app : Libri
 
 En une phrase, elle sert à : Aider un étudiant à trouver rapidement un livre à lire selon le genre et le nombre de pages qu'il a envie/le temps qu'il a.
 
