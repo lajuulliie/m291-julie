@@ -15,4 +15,6 @@ Je n'ai pas encore d'idée
 
 ## Page profil : https://lajuulliie.github.io/m291-julie/
 
+## Dossier design : [`design/`](design/)
+
 _Repo cloné et ouvert dans VS Code._
