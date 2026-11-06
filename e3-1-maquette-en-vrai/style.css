@@ -1,0 +1,379 @@
+/* ==========================================================
+   Libri — design tokens (palette tirée de la maquette retenue)
+   Palette 60-30-10 : fond crème (60), brun foncé du texte (30),
+   brun chaud des boutons (10).
+   ========================================================== */
+:root {
+  --color-bg: #FCF1E0;           /* 60 % : fond de page */
+  --color-surface: #FDF6EA;      /* panneau de filtres, cartes (bureau) */
+  --color-surface-alt: #F2E3CC;  /* barre de recherche, carte survolée */
+  --color-text: #4A2F22;         /* 30 % : texte et icônes */
+  --color-primary: #5A3D2C;      /* 10 % : boutons et menus de choix */
+  --color-primary-hover: #4A2F22;
+  --color-border: #8C7A6C;       /* filets de séparation */
+  --color-error: #9B2C2C;        /* sera utilisé pour « Aucun résultat » */
+  --color-focus: #9A3F1E;        /* contour au clavier */
+
+  /* Couleurs des couvertures (4 dégradés qui se répètent) */
+  --couv-1a: #F3DCC8; --couv-1b: #BFD0DC;
+  --couv-2a: #F3C9AE; --couv-2b: #E39A7A;
+  --couv-3a: #F4EBDD; --couv-3b: #E3D7BC;
+  --couv-4a: #EADFD3; --couv-4b: #CFC3D3;
+  --couv-texte: #2F2118;
+
+  /* 2 polices seulement */
+  --font-title: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Échelle typographique (16 px minimum pour le texte courant) */
+  --fs-base: 1rem;      /* 16 px */
+  --fs-cover: 1.25rem;  /* 20 px : titre dessiné sur la couverture */
+  --fs-logo: 2.625rem;  /* 42 px */
+
+  /* Espacements */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+
+  --size-touch: 48px;    /* hauteur minimale d'une zone cliquable */
+  --radius-card: 12px;
+  --radius-pill: 24px;
+  --radius-cover: 3px;
+  --shadow-panel: 0 -6px 18px rgba(74, 47, 34, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+/* Texte lu par les lecteurs d'écran, invisible à l'écran */
+.visuellement-cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ---------- En-tête : flexbox (une pile sur mobile, une ligne sur bureau) ---------- */
+.header-site {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-3) var(--space-3);
+}
+
+.logo {
+  font-family: var(--font-title);
+  font-size: var(--fs-logo);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.champ-recherche {
+  width: 100%;
+  min-height: var(--size-touch);
+  padding: 0 var(--space-3) 0 52px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface-alt);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%234A2F22' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10' cy='10' r='6.5'/%3E%3Cpath d='M15 15l5.5 5.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 16px center;
+  font: inherit;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.champ-recherche::placeholder {
+  color: var(--color-text);
+  opacity: 0.85;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* ---------- Filtres : panneau fixé en bas sur mobile ---------- */
+.filtres {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background-color: var(--color-surface);
+  border-radius: 28px 28px 0 0;
+  box-shadow: var(--shadow-panel);
+}
+
+.filtre-groupe {
+  flex: 1;
+  min-width: 0;
+}
+
+.filtre-groupe + .filtre-groupe {
+  padding-left: var(--space-3);
+  border-left: 1px solid var(--color-border);
+}
+
+.filtre-groupe label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.filtre-groupe select {
+  width: 100%;
+  min-height: var(--size-touch);
+  padding: 0 30px 0 14px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  appearance: none;
+  background-color: var(--color-primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' fill='none' stroke='%23FDF6EA' stroke-width='2'%3E%3Cpath d='M1 1l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 11px center;
+  font: inherit;
+  color: var(--color-surface);
+  cursor: pointer;
+}
+
+.filtre-groupe select:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* ---------- Page : grid (filtres + liste) ---------- */
+.contenu-principal {
+  padding-bottom: 140px; /* place pour le panneau fixe */
+}
+
+/* ---------- Grille de cartes, mobile first : 2 colonnes ---------- */
+.cartes-grille {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0 var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.carte {
+  position: relative;
+  padding: var(--space-3);
+  transition: background-color 0.2s ease;
+}
+
+.carte:hover {
+  background-color: var(--color-surface-alt);
+}
+
+.carte:focus-within {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+}
+
+/* Filets du mobile : un trait sous chaque carte et un trait vertical entre les colonnes, avec un petit espace */
+.carte::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 5px;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+.carte:nth-child(even)::after {
+  left: 5px;
+  right: 0;
+}
+
+.carte:nth-child(odd)::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 10px;
+  right: 0;
+  width: 1px;
+  background-color: var(--color-border);
+}
+
+.carte .genre {
+  margin-bottom: var(--space-2);
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.couverture {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2);
+  aspect-ratio: 1.1 / 1;
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-2);
+  border-radius: var(--radius-cover);
+  background: linear-gradient(160deg, var(--couv-1a), var(--couv-1b));
+  box-shadow: inset 12px 0 0 rgba(74, 47, 34, 0.07);
+  color: var(--couv-texte);
+  text-align: center;
+}
+
+.carte:nth-child(4n + 2) .couverture { background: linear-gradient(160deg, var(--couv-2a), var(--couv-2b)); }
+.carte:nth-child(4n + 3) .couverture { background: linear-gradient(160deg, var(--couv-3a), var(--couv-3b)); }
+.carte:nth-child(4n + 4) .couverture { background: linear-gradient(160deg, var(--couv-4a), var(--couv-4b)); }
+
+.couv-titre {
+  font-family: var(--font-title);
+  font-size: var(--fs-cover);
+  line-height: 1.1;
+}
+
+.couv-auteur {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.carte h3 {
+  font-size: var(--fs-base);
+  margin-bottom: var(--space-1);
+}
+
+/* Lien étendu : toute la carte est cliquable */
+.carte-lien {
+  color: inherit;
+  text-decoration: none;
+}
+
+.carte-lien::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.carte-lien:focus-visible {
+  outline: none; /* le contour est sur toute la carte (:focus-within) */
+}
+
+.carte .pages {
+  padding-right: var(--space-4);
+}
+
+/* Petite flèche : indice que la carte ouvre une fiche */
+.carte .pages::after {
+  content: "›" / "";
+  position: absolute;
+  right: var(--space-3);
+  bottom: var(--space-3);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-primary);
+}
+
+.footer-site {
+  padding: var(--space-4);
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ---------- Bureau : dès 768 px, filtres à gauche, cartes à bordure, 2 colonnes ---------- */
+@media (min-width: 768px) {
+  .header-site {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+  }
+
+  .champ-recherche {
+    width: 480px;
+  }
+
+  .contenu-principal {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: var(--space-4);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-3) var(--space-4) var(--space-5);
+  }
+
+  .filtres {
+    position: sticky;
+    top: var(--space-3);
+    align-self: start;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: none;
+  }
+
+  .filtre-groupe + .filtre-groupe {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .cartes-grille {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+    margin: 0;
+    border-top: 0;
+  }
+
+  .carte {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+  }
+
+  .carte:hover {
+    background-color: var(--color-surface-alt);
+  }
+
+  .carte::after,
+  .carte:nth-child(odd)::before {
+    display: none;
+  }
+}
+
+/* Écrans plus larges : 3 colonnes, puis 4 comme sur la wireframe desktop */
+@media (min-width: 1000px) {
+  .cartes-grille {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .cartes-grille {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Respect de la sensibilité au mouvement */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

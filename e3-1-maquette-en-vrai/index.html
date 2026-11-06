@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Libri — Trouvez votre prochaine lecture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header-site">
+    <h1 class="logo">Libri</h1>
+    <!-- Recherche : mise en page seulement. Le JavaScript viendra plus tard. -->
+    <div class="recherche" role="search">
+      <label for="recherche" class="visuellement-cache">Rechercher un livre par titre</label>
+      <input type="search" id="recherche" class="champ-recherche" placeholder="Rechercher un livre…" autocomplete="off">
+    </div>
+  </header>
+
+  <main class="contenu-principal">
+    <!-- Filtres toujours visibles (besoin du persona). Mise en page seulement pour l'instant. -->
+    <aside class="filtres" aria-label="Filtres">
+      <div class="filtre-groupe">
+        <label for="filtre-genre">Genres</label>
+        <select id="filtre-genre">
+          <option>Tous</option>
+          <option>Roman</option>
+          <option>Essai</option>
+          <option>Fictif</option>
+          <option>Roman policier</option>
+          <option>Psychologie</option>
+          <option>Philosophie</option>
+        </select>
+      </div>
+      <div class="filtre-groupe">
+        <label for="filtre-pages">Nombre de pages</label>
+        <select id="filtre-pages">
+          <option>Tous</option>
+          <option>Moins de 200 pages</option>
+          <option>200 à 299 pages</option>
+          <option>300 à 399 pages</option>
+          <option>400 pages et plus</option>
+        </select>
+      </div>
+    </aside>
+
+    <h2 id="titre-liste" class="visuellement-cache">Catalogue des livres</h2>
+    <section id="liste-cartes" class="cartes-grille" aria-labelledby="titre-liste" aria-live="polite">
+      <article class="carte">
+        <p class="genre">Psychologie</p>
+        <div class="couverture" aria-hidden="true"><span class="couv-titre">Pourquoi on procrastine</span><span class="couv-auteur">Cédric Monnet</span></div>
+        <h3><a href="#" class="carte-lien">Pourquoi on procrastine</a></h3>
+        <p class="auteur">Cédric Monnet</p>
+        <p class="pages">144 pages</p>
+      </article>
+
+      <article class="carte">
+        <p class="genre">Essai</p>
+        <div class="couverture" aria-hidden="true"><span class="couv-titre">Éloge de l'ennui</span><span class="couv-auteur">Paul Verdier</span></div>
+        <h3><a href="#" class="carte-lien">Éloge de l'ennui</a></h3>
+        <p class="auteur">Paul Verdier</p>
+        <p class="pages">152 pages</p>
+      </article>
+
+      <article class="carte">
+        <p class="genre">Psychologie</p>
+        <div class="couverture" aria-hidden="true"><span class="couv-titre">L'esprit en pause</span><span class="couv-auteur">Thomas Aubry</span></div>
+        <h3><a href="#" class="carte-lien">L'esprit en pause</a></h3>
+        <p class="auteur">Thomas Aubry</p>
+        <p class="pages">160 pages</p>
+      </article>
+
+      <article class="carte">
+        <p class="genre">Roman</p>
+        <div class="couverture" aria-hidden="true"><span class="couv-titre">Sous le pont de Lavaux</span><span class="couv-auteur">Théo Girard</span></div>
+        <h3><a href="#" class="carte-lien">Sous le pont de Lavaux</a></h3>
+        <p class="auteur">Théo Girard</p>
+        <p class="pages">176 pages</p>
+      </article>
+
+      <article class="carte">
+        <p class="genre">Fictif</p>
+        <div class="couverture" aria-hidden="true"><span class="couv-titre">Le cartographe des rêves</span><span class="couv-auteur">Anouk Perrin</span></div>
+        <h3><a href="#" class="carte-lien">Le cartographe des rêves</a></h3>
+        <p class="auteur">Anouk Perrin</p>
+        <p class="pages">176 pages</p>
+      </article>
+
+      <article class="carte">
+        <p class="genre">Philosophie</p>
+        <div class="couverture" aria-hidden="true"><span class="couv-titre">Éthique pour débutants</span><span class="couv-auteur">Nadia Benali</span></div>
+        <h3><a href="#" class="carte-lien">Éthique pour débutants</a></h3>
+        <p class="auteur">Nadia Benali</p>
+        <p class="pages">180 pages</p>
+      </article>
+
+      <article class="carte">
+        <p class="genre">Essai</p>
+        <div class="couverture" aria-hidden="true"><span class="couv-titre">Le courage d'être lent</span><span class="couv-auteur">Mathias Perret</span></div>
+        <h3><a href="#" class="carte-lien">Le courage d'être lent</a></h3>
+        <p class="auteur">Mathias Perret</p>
+        <p class="pages">188 pages</p>
+      </article>
+
+      <article class="carte">
+        <p class="genre">Psychologie</p>
+        <div class="couverture" aria-hidden="true"><span class="couv-titre">Mieux dormir, mieux vivre</span><span class="couv-auteur">Noémie Faure</span></div>
+        <h3><a href="#" class="carte-lien">Mieux dormir, mieux vivre</a></h3>
+        <p class="auteur">Noémie Faure</p>
+        <p class="pages">192 pages</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer-site">
+    <p>&copy; 2026 — Libri · Projet ICT 291</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
