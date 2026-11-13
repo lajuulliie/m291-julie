@@ -13,7 +13,7 @@ function classeGenre(genre) {
 // État 1 — Chargement
 conteneur.innerHTML = "<p class='etat-chargement'>Chargement des livres en cours...</p>";
 
-fetch("./data.json")
+fetch("../data.json")
   .then(function (reponse) {
     if (!reponse.ok) {
       throw new Error("Erreur de chargement : " + reponse.status);
