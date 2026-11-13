@@ -1,47 +1,49 @@
 /* ==========================================================
-   Libri — design tokens (palette tirée de la maquette retenue)
-   Palette 60-30-10 : fond crème (60), brun foncé du texte (30),
-   brun chaud des boutons (10).
+   Libri — ambiance « bibliothèque de quartier »
+   Papier crème, encre brune, couvertures de livres en tons sourds.
    ========================================================== */
 :root {
-  --color-bg: #FCF1E0;           /* 60 % : fond de page */
-  --color-surface: #FDF6EA;      /* panneau de filtres, cartes (bureau) */
-  --color-surface-alt: #F2E3CC;  /* barre de recherche, carte survolée */
-  --color-text: #4A2F22;         /* 30 % : texte et icônes */
-  --color-primary: #5A3D2C;      /* 10 % : boutons et menus de choix */
-  --color-primary-hover: #4A2F22;
-  --color-border: #8C7A6C;       /* filets de séparation */
-  --color-error: #9B2C2C;        /* sera utilisé pour « Aucun résultat » */
-  --color-focus: #9A3F1E;        /* contour au clavier */
+  --color-bg: #F7EDDA;
+  --color-surface: #FDF7EB;
+  --color-surface-alt: #F0E1C8;
+  --color-text: #3E271B;
+  --color-text-soft: #6A5141;
+  --color-primary: #5A3D2C;
+  --color-primary-hover: #3E271B;
+  --color-border: #8C7A6C;
+  --color-line: rgba(140, 122, 108, 0.35);
+  --color-error: #9B2C2C;
+  --color-focus: #9A3F1E;
 
-  /* Couleurs des couvertures (4 dégradés qui se répètent) */
-  --couv-1a: #F3DCC8; --couv-1b: #BFD0DC;
-  --couv-2a: #F3C9AE; --couv-2b: #E39A7A;
-  --couv-3a: #F4EBDD; --couv-3b: #E3D7BC;
-  --couv-4a: #EADFD3; --couv-4b: #CFC3D3;
-  --couv-texte: #2F2118;
+  /* Couvertures : un ton par genre (texte crème, contraste AA) */
+  --couv-roman: #8B4A32;
+  --couv-essai: #55654A;
+  --couv-fictif: #2F3F5A;
+  --couv-policier: #5E2230;
+  --couv-psychologie: #7A5C16;
+  --couv-philosophie: #4A3A5C;
+  --couv-texte: #FBF3E4;
 
-  /* 2 polices seulement */
   --font-title: "Playfair Display", Georgia, serif;
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  /* Échelle typographique (16 px minimum pour le texte courant) */
-  --fs-base: 1rem;      /* 16 px */
-  --fs-cover: 1.25rem;  /* 20 px : titre dessiné sur la couverture */
-  --fs-logo: 2.625rem;  /* 42 px */
+  --fs-base: 1rem;
+  --fs-small: 0.875rem;
+  --fs-logo: 2.5rem;
 
-  /* Espacements */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 16px;
   --space-4: 24px;
   --space-5: 32px;
 
-  --size-touch: 48px;    /* hauteur minimale d'une zone cliquable */
-  --radius-card: 12px;
-  --radius-pill: 24px;
-  --radius-cover: 3px;
-  --shadow-panel: 0 -6px 18px rgba(74, 47, 34, 0.14);
+  --size-touch: 48px;
+  --radius-card: 10px;
+  --radius-field: 10px;
+  --radius-cover: 2px 6px 6px 2px;
+  --shadow-card: 0 1px 2px rgba(62, 39, 27, 0.08), 0 6px 16px rgba(62, 39, 27, 0.08);
+  --shadow-card-hover: 0 2px 4px rgba(62, 39, 27, 0.1), 0 12px 24px rgba(62, 39, 27, 0.14);
+  --shadow-panel: 0 -6px 18px rgba(62, 39, 27, 0.14);
 }
 
 * {
@@ -55,10 +57,9 @@ body {
   font-size: var(--fs-base);
   background-color: var(--color-bg);
   color: var(--color-text);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
-/* Texte lu par les lecteurs d'écran, invisible à l'écran */
 .visuellement-cache {
   position: absolute;
   width: 1px;
@@ -67,12 +68,24 @@ body {
   clip: rect(0 0 0 0);
 }
 
-/* ---------- En-tête : flexbox (une pile sur mobile, une ligne sur bureau) ---------- */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* ---------- En-tête ---------- */
 .header-site {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   padding: var(--space-4) var(--space-3) var(--space-3);
+  border-bottom: 4px double var(--color-border);
+}
+
+.marque {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .logo {
@@ -80,32 +93,37 @@ body {
   font-size: var(--fs-logo);
   font-weight: 700;
   line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.slogan {
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-text-soft);
 }
 
 .champ-recherche {
   width: 100%;
   min-height: var(--size-touch);
-  padding: 0 var(--space-3) 0 52px;
-  border: 0;
-  border-radius: var(--radius-pill);
-  background-color: var(--color-surface-alt);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%234A2F22' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10' cy='10' r='6.5'/%3E%3Cpath d='M15 15l5.5 5.5'/%3E%3C/svg%3E");
+  padding: 0 var(--space-3) 0 50px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-field);
+  background-color: var(--color-surface);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%235A3D2C' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10' cy='10' r='6.5'/%3E%3Cpath d='M15 15l5.5 5.5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: 16px center;
   font: inherit;
   color: var(--color-text);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
 .champ-recherche::placeholder {
-  color: var(--color-text);
-  opacity: 0.85;
+  color: var(--color-text-soft);
+  font-style: italic;
 }
 
-:focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 2px;
+.champ-recherche:hover {
+  border-color: var(--color-primary);
 }
 
 /* ---------- Filtres : panneau fixé en bas sur mobile ---------- */
@@ -119,7 +137,8 @@ body {
   gap: var(--space-3);
   padding: var(--space-3);
   background-color: var(--color-surface);
-  border-radius: 28px 28px 0 0;
+  border-top: 1px solid var(--color-line);
+  border-radius: 20px 20px 0 0;
   box-shadow: var(--shadow-panel);
 }
 
@@ -128,144 +147,163 @@ body {
   min-width: 0;
 }
 
-.filtre-groupe + .filtre-groupe {
-  padding-left: var(--space-3);
-  border-left: 1px solid var(--color-border);
-}
-
 .filtre-groupe label {
   display: block;
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-1);
+  font-size: var(--fs-small);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.06em;
+  color: var(--color-text-soft);
 }
 
 .filtre-groupe select {
   width: 100%;
   min-height: var(--size-touch);
-  padding: 0 30px 0 14px;
-  border: 0;
-  border-radius: var(--radius-pill);
+  padding: 0 34px 0 14px;
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius-field);
   appearance: none;
-  background-color: var(--color-primary);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' fill='none' stroke='%23FDF6EA' stroke-width='2'%3E%3Cpath d='M1 1l6 6 6-6'/%3E%3C/svg%3E");
+  background-color: var(--color-bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' fill='none' stroke='%235A3D2C' stroke-width='2'%3E%3Cpath d='M1 1l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 11px center;
+  background-position: right 12px center;
   font: inherit;
-  color: var(--color-surface);
+  font-weight: 500;
+  color: var(--color-text);
   cursor: pointer;
-}
-
-.filtre-groupe select:hover {
-  background-color: var(--color-primary-hover);
-}
-
-/* ---------- Page : grid (filtres + liste) ---------- */
-.contenu-principal {
-  padding-bottom: 140px; /* place pour le panneau fixe */
-}
-
-/* ---------- Grille de cartes, mobile first : 2 colonnes ---------- */
-.cartes-grille {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin: 0 var(--space-3);
-  border-top: 1px solid var(--color-border);
-}
-
-.carte {
-  position: relative;
-  padding: var(--space-3);
   transition: background-color 0.2s ease;
 }
 
-.carte:hover {
+.filtre-groupe select:hover {
   background-color: var(--color-surface-alt);
+}
+
+/* ---------- Page et grille de cartes (mobile : 2 colonnes) ---------- */
+.contenu-principal {
+  padding-bottom: 150px;
+}
+
+.cartes-grille {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3) 12px;
+  margin: 0;
+  padding: var(--space-4) var(--space-3) 0;
+}
+
+.carte {
+  --couv: var(--couv-roman);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 12px var(--space-3);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.carte:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .carte:focus-within {
   outline: 3px solid var(--color-focus);
-  outline-offset: -3px;
+  outline-offset: 2px;
 }
 
-/* Filets du mobile : un trait sous chaque carte et un trait vertical entre les colonnes, avec un petit espace */
-.carte::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 5px;
-  height: 1px;
-  background-color: var(--color-border);
-}
-
-.carte:nth-child(even)::after {
-  left: 5px;
-  right: 0;
-}
-
-.carte:nth-child(odd)::before {
-  content: "";
-  position: absolute;
-  top: 8px;
-  bottom: 10px;
-  right: 0;
-  width: 1px;
-  background-color: var(--color-border);
-}
+.genre-roman { --couv: var(--couv-roman); }
+.genre-essai { --couv: var(--couv-essai); }
+.genre-fictif { --couv: var(--couv-fictif); }
+.genre-roman-policier { --couv: var(--couv-policier); }
+.genre-psychologie { --couv: var(--couv-psychologie); }
+.genre-philosophie { --couv: var(--couv-philosophie); }
 
 .carte .genre {
   margin-bottom: var(--space-2);
-  text-align: center;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--color-line);
+  font-size: var(--fs-small);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.08em;
+  color: var(--couv);
 }
 
+/* Couverture : un vrai petit livre (dos à gauche, double filet) */
 .couverture {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: var(--space-2);
-  aspect-ratio: 1.1 / 1;
-  padding: var(--space-2) var(--space-3);
-  margin-bottom: var(--space-2);
+  aspect-ratio: 3 / 4;
+  padding: var(--space-3) var(--space-3) var(--space-3) 22px;
+  margin-bottom: 12px;
+  overflow: hidden;
   border-radius: var(--radius-cover);
-  background: linear-gradient(160deg, var(--couv-1a), var(--couv-1b));
-  box-shadow: inset 12px 0 0 rgba(74, 47, 34, 0.07);
+  background-color: var(--couv);
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.22));
+  box-shadow: 3px 4px 10px rgba(62, 39, 27, 0.28);
   color: var(--couv-texte);
   text-align: center;
 }
 
-.carte:nth-child(4n + 2) .couverture { background: linear-gradient(160deg, var(--couv-2a), var(--couv-2b)); }
-.carte:nth-child(4n + 3) .couverture { background: linear-gradient(160deg, var(--couv-3a), var(--couv-3b)); }
-.carte:nth-child(4n + 4) .couverture { background: linear-gradient(160deg, var(--couv-4a), var(--couv-4b)); }
+.couverture::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 12px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.35), rgba(255, 255, 255, 0.08) 70%, rgba(0, 0, 0, 0.12));
+}
+
+.couverture::after {
+  content: "";
+  position: absolute;
+  inset: 8px 8px 8px 18px;
+  border: 1px solid rgba(251, 243, 228, 0.4);
+  pointer-events: none;
+}
 
 .couv-titre {
   font-family: var(--font-title);
-  font-size: var(--fs-cover);
-  line-height: 1.1;
+  font-size: clamp(1rem, 4.4vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.15;
 }
 
 .couv-auteur {
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  opacity: 0.9;
 }
 
 .carte h3 {
-  font-size: var(--fs-base);
+  font-family: var(--font-title);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.25;
   margin-bottom: var(--space-1);
 }
 
-/* Lien étendu : toute la carte est cliquable */
+.carte .auteur {
+  font-style: italic;
+  color: var(--color-text-soft);
+}
+
 .carte-lien {
   color: inherit;
   text-decoration: none;
 }
 
+/* Lien étendu : toute la carte est cliquable */
 .carte-lien::after {
   content: "";
   position: absolute;
@@ -273,103 +311,113 @@ body {
 }
 
 .carte-lien:focus-visible {
-  outline: none; /* le contour est sur toute la carte (:focus-within) */
+  outline: none;
 }
 
 .carte .pages {
+  margin-top: var(--space-1);
   padding-right: var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--color-text-soft);
 }
 
-/* Petite flèche : indice que la carte ouvre une fiche */
 .carte .pages::after {
+  content: "›";
   content: "›" / "";
   position: absolute;
-  right: var(--space-3);
-  bottom: var(--space-3);
-  font-size: 1.5rem;
+  right: 12px;
+  bottom: 10px;
+  font-size: 1.75rem;
   line-height: 1;
-  color: var(--color-primary);
+  color: var(--couv);
 }
 
-.footer-site {
-  padding: var(--space-4);
-  text-align: center;
-  border-top: 1px solid var(--color-border);
-}
-
+/* ---------- Messages d'état ---------- */
 .etat-chargement,
 .etat-vide,
 .etat-erreur {
   grid-column: 1 / -1;
+  padding: var(--space-5) var(--space-3);
   text-align: center;
-  padding: 2rem 1rem;
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: 1.125rem;
+  color: var(--color-text-soft);
 }
 
 .etat-erreur {
-  color: #9b2c2c;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: var(--fs-base);
+  color: var(--color-error);
+  background-color: #FBEAE4;
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-card);
 }
 
-/* ---------- Bureau : dès 768 px, filtres à gauche, cartes à bordure, 2 colonnes ---------- */
+/* ---------- Pied de page ---------- */
+.footer-site {
+  padding: var(--space-4);
+  text-align: center;
+  font-size: var(--fs-small);
+  color: var(--color-text-soft);
+  border-top: 4px double var(--color-border);
+}
+
+/* ---------- Bureau : filtres à gauche ---------- */
 @media (min-width: 768px) {
   .header-site {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: var(--space-4);
+    padding: var(--space-4) max(var(--space-4), calc((100% - 1200px) / 2 + var(--space-4)));
   }
 
   .champ-recherche {
-    width: 480px;
+    width: 420px;
   }
 
   .contenu-principal {
     display: grid;
     grid-template-columns: 260px minmax(0, 1fr);
     gap: var(--space-4);
+    align-items: start;
     max-width: 1200px;
     margin: 0 auto;
-    padding: var(--space-3) var(--space-4) var(--space-5);
+    padding: var(--space-4) var(--space-4) var(--space-5);
   }
 
   .filtres {
     position: sticky;
     top: var(--space-3);
-    align-self: start;
     flex-direction: column;
-    border: 1px solid var(--color-border);
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border: 1px solid var(--color-line);
     border-radius: var(--radius-card);
-    box-shadow: none;
+    box-shadow: var(--shadow-card);
   }
 
-  .filtre-groupe + .filtre-groupe {
-    padding-left: 0;
-    border-left: 0;
+  .filtres::before {
+    content: "Affiner la recherche";
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-line);
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    font-weight: 700;
   }
 
   .cartes-grille {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-3);
-    margin: 0;
-    border-top: 0;
+    gap: var(--space-4) var(--space-3);
+    padding: 0;
   }
 
   .carte {
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-card);
-  }
-
-  .carte:hover {
-    background-color: var(--color-surface-alt);
-  }
-
-  .carte::after,
-  .carte:nth-child(odd)::before {
-    display: none;
+    padding: var(--space-3) var(--space-3) var(--space-4);
   }
 }
 
-/* Écrans plus larges : 3 colonnes, puis 4 comme sur la wireframe desktop */
 @media (min-width: 1000px) {
   .cartes-grille {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -382,10 +430,13 @@ body {
   }
 }
 
-/* Respect de la sensibilité au mouvement */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .carte:hover {
+    transform: none;
   }
 }
